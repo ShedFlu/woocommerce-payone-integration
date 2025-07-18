@@ -410,22 +410,29 @@ class Base extends Request {
 
 		// Just use the sum of all discounts as one position
 		if ( $cart->has_discount() ) {
-			$discount       = round( $cart->get_discount_total() + $cart->get_discount_tax(), 2 );
-			$data           = [
-				'subtotal'     => $cart->get_discount_total(),
-				'subtotal_tax' => $cart->get_discount_tax(),
-				'total'        => $cart->get_discount_total(),
-				'total_tax'    => $cart->get_discount_tax(),
-			];
-			$va             = Plugin::get_tax_rate_for_item_data( $data );
-			$articles[ $n ] = [
-				'id' => 'd-' . $n,
-				'pr' => - 100 * $discount,
-				'no' => 1,
-				'de' => __( 'Discount', 'payone-woocommerce-3' ),
-				'va' => 100 * $va,
-				'it' => 'voucher',
-			];
+				$discount_total = 0.0;
+				$discount_tax   = 0.0;
+				foreach ( $cart->get_coupons() as $code => $coupon ) {
+						$discount_total += $cart->get_coupon_discount_amount( $code );
+						$discount_tax   += $cart->get_coupon_discount_tax_amount( $code );
+				}
+
+				$discount       = round( $discount_total + $discount_tax, 2 );
+				$data           = [
+						'subtotal'     => $discount_total,
+						'subtotal_tax' => $discount_tax,
+						'total'        => $discount_total,
+						'total_tax'    => $discount_tax,
+				];
+				$va             = Plugin::get_tax_rate_for_item_data( $data );
+				$articles[ $n ] = [
+						'id' => 'd-' . $n,
+						'pr' => - 100 * $discount,
+						'no' => 1,
+						'de' => __( 'Discount', 'payone-woocommerce-3' ),
+						'va' => 100 * $va,
+						'it' => 'voucher',
+				];
 		}
 		$n ++;
 
