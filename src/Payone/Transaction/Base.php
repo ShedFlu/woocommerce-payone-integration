@@ -354,7 +354,6 @@ class Base extends Request {
 	 */
 	protected function get_article_list_for_transaction_from_cart( \WC_Cart $cart ) {
 		$articles  = [];
-		$discounts = [];
 		$n         = 1;
 
 		foreach ( $cart->get_cart_contents() as $item_data ) {
@@ -381,11 +380,6 @@ class Base extends Request {
 				'it' => 'goods',
 			];
 			$n ++;
-
-			if ( ! isset( $discounts[ $va ] ) ) {
-				$discounts[ $va ] = 0;
-			}
-			$discounts[ $va ] += $discount;
 		}
 
 		foreach ( $cart->calculate_shipping() as $item_data ) {
