@@ -443,7 +443,7 @@ class Base extends Request {
 	 *
 	 * @return array
 	 */
-	protected function get_article_list_for_transaction_from_refund( OrderRefund $refund = null ) {
+	protected function get_article_list_for_transaction_from_refund( ?OrderRefund $refund = null ) {
 		if ( ! $refund ) {
 			return [];
 		}
