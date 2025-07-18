@@ -4,7 +4,7 @@ Donate link: https://www.payone.com/
 Tags: woocommerce, payment
 Requires at least: 5.0
 Tested up to: 9.6.0
-Stable tag: 2.8.0
+Stable tag: 2.9.0
 Requires PHP: 7.4.0
 License: MIT
 License URI: https://opensource.org/licenses/MIT
@@ -73,6 +73,12 @@ If you have found anything security related, please contact our technical suppor
 
 
 == Changelog ==
+
+== 2.9.0 ==
+
+Bugfixes
+
+* Fixed voucher amount calculation
 
 == 2.8.0 ==
 
