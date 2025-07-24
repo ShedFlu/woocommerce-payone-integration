@@ -324,7 +324,7 @@ class Base extends Request {
 
                 // Just use the sum of all discounts as one position
                 if ( $order->get_discount_total() > 0 || $order->get_discount_tax() > 0 ) {
-                        $discount       = round( $order->get_discount_total() + $order->get_discount_tax(), 2 );
+			$discount       = round( $order->get_discount_total(), 2 );
                         $data           = [
                                 'subtotal'     => $order->get_discount_total(),
                                 'subtotal_tax' => $order->get_discount_tax(),
@@ -332,6 +332,7 @@ class Base extends Request {
                                 'total_tax'    => $order->get_discount_tax(),
                         ];
                         $va             = Plugin::get_tax_rate_for_item_data( $data );
+
                         $articles[ $n ] = [
                                 'id' => 'd-' . $n,
                                 'pr' => - 100 * $discount,
@@ -417,7 +418,7 @@ class Base extends Request {
 						$discount_tax   += $cart->get_coupon_discount_tax_amount( $code );
 				}
 
-				$discount       = round( $discount_total + $discount_tax, 2 );
+			$discount       = round( $discount_total, 2 );
 				$data           = [
 						'subtotal'     => $discount_total,
 						'subtotal_tax' => $discount_tax,
