@@ -9,9 +9,9 @@ use Payone\Gateway\PayoneBlocksSupport;
  * Plugin Name: PAYONE Payment for WooCommerce
  * Version: 2.9.2
  * Plugin URI: https://www.payone.com/
- * Description: Integration of PAYONE payment into your WooCommerce store.
- * Author: PAYONE GmbH
- * Author URI: https://www.payone.com/
+ * Description: Forked integration of PAYONE payment into your WooCommerce store, by VON DER SEE.
+ * Author: VON DER SEE GmbH
+ * Author URI: https://www.vondersee.com/
  * Requires at least: 5.0
  * Tested up to: 9.6.0
  */
