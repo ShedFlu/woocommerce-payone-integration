@@ -184,7 +184,14 @@ class Plugin {
 			return $value;
 		}
 
-		return $value && self::$send_mail_after_capture;
+		// Only apply the filter to processing order emails, not all email types
+		// This prevents the filter from blocking cancelled/failed order emails
+		$current_filter = current_filter();
+		if ( $current_filter === 'woocommerce_email_enabled_customer_processing_order' ) {
+			return $value && self::$send_mail_after_capture;
+		}
+
+		return $value;
 	}
 
 	/**
